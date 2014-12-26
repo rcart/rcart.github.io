@@ -1,0 +1,14 @@
+---
+layout: post
+title: notification-daemon no te funciona? Utiliza notify-osd
+date: '2012-12-07T14:16:00.001-06:00'
+author: Rcart
+tags:
+- spectrwm
+- ubuntu
+modified_time: '2012-12-07T14:16:47.821-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-7103906457649555283
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/12/notification-daemon-no-te-funciona.html
+---
+
+Desde la version 12.04 de Ubuntu <b>notification-daemon</b> <a href="https://bugs.launchpad.net/notification-daemon/+bug/927031">esta roto</a> para la mayoria de aplicaciones GTK2.<br /><br />Hace unos dias me descargué Linux Mint Nadia (14) para una amiga, y casualmente la estuve testeando (increible distribucion, muy buena) antes de meterla en la USB y me dió la curiosidad de saber los paquetes que utilizaba para el sistema de notificacion, tomando en cuenta que esta basada en Ubuntu 12.10.<br /><br />Haciendo un dpkg -l |grep notify obtuve lo que buscaba, y me dí cuenta que utiliza <b>notify-osd</b> junto con otros paquetes para hacer uso de las notificaciones.<br /><br />En <a href="http://rcartbitacora.blogspot.com/2012/07/instalar-ubuntu-minimal-1204-primera.html">mi instalacion minimalista</a> utilizo pidgin para IM, y debido a que <b>notification-daemon</b> esta roto para mi version de Ubuntu y no he encontrado solucion hasta este momento, no cuento con notificaciones emergentes. Instale los paquetes necesarios de Mint para hacer funcionar de alguna manera notify-osd, y lo he conseguido. Vamos a ello:<br /><br />Instalamos todo el sitema de notificaciones (yo lo tenia parcialmente instalado):<br /><blockquote>sudo apt-get install --no-install-recommends  notify-osd notify-osd-icons libnotify4 libnotify-bin pidgin-libnotify gir1.2-notify-0.7 python-notify vlc-plugin-notify <br /></blockquote>Y con eso he podido encontrar la felicidad =)<br /><br />Ahora ya cuento con un sistema de notifiacion funcional y no pierdo ninguna de ellas ;)

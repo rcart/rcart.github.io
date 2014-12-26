@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'Microfono interno Dell Inspiron N4050: Soporte incorporado en ALSA \o/'
+date: '2012-10-10T13:05:00.000-05:00'
+author: Rcart
+tags:
+- ubuntu
+modified_time: '2012-10-11T14:51:58.880-05:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-1231000333627013802
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/10/microfono-interno-dell-inspiron-n4050.html
+---
+
+Hace mucho <a href="http://rcartbitacora.blogspot.com/2012/01/microfono-interno-dell-inspiron-n4050.html">expliqué</a> como hacer funcionar el microfono interno de este equipo, pero durante mi actualizacion a Ubuntu 12.04 y durante la instalacion de <a href="http://www.alsa-project.org/main/index.php/Main_Page">ALSA</a>, me puse a leer su changelog del sitio oficial y me encontré con la grata noticia que dice asi:<br /><blockquote>[...]<br />- ALSA: HDA: Add internal mic for IDT 92HD88B <br />BugLink: http://bugs.launchpad.net/bugs/696493 <br />According to datasheet (and real-world testing), IDT 92HD88B can <br />have internal mics at NID 0x11 and 0x20, so enable them accordingly. <br />[...]<br /></blockquote><br />Lo que significa que ese microfono ahora es soportado por ALSA (que tiene su codigo base en el Kernel) en su version >=v1.0.23 | v1.0.24.<br /><br />Si querés confirmar el model del micro de tu tarjeta podes hacerlo asi:<br /><blockquote>rcart*ubuntu:~$ cat /proc/asound/card0/codec#* | grep Codec<br />Codec: IDT 92HD87B1/3<br />Codec: Intel CougarPoint HDMI<br />rcart*ubuntu:~$ <br /></blockquote><br />Y para la conocer la version de ALSA que estas corriendo, hace:<br /><blockquote>rcart*ubuntu:~$ cat /proc/asound/version <br />Advanced Linux Sound Architecture Driver Version 1.0.24.<br />rcart*ubuntu:~$ <br /></blockquote><br />Saludos.

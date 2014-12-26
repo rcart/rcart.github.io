@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'Vim: ejecutar comandos el crear cierto tipo de archivos'
+date: '2014-09-08T18:58:00.000-05:00'
+author: Rcart
+tags:
+- random
+- code
+modified_time: '2014-09-08T18:58:43.201-05:00'
+thumbnail: http://4.bp.blogspot.com/-fEP47nVvRQk/VA5CZV8W8vI/AAAAAAAAAaM/4bKna2Gi6SQ/s72-c/2014-09-08-174953_1366x768_scrot.png
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-6355464145423020127
+blogger_orig_url: http://rcartbitacora.blogspot.com/2014/09/vim-ejecutar-comandos-el-crear-cierto.html
+---
+
+La idea es esta: cada vez que vaya a crear un archivo .{cpp|h} quiero ejectuar algun comando/script desde vim. En este caso el comando es copiar un template de <a href="https://github.com/Valloric/YouCompleteMe">ycm</a> (ycm_extra_conf.py) para programar en C++, y este archivo se deberá copiar en cada directorio que vaya a crear un nuevo codigo C++.<br /><br />El procedimiento es sencillo una vez encontramos la manera, y simplemente debemos agregar esta linea a nuestro $HOME/.vimrc :<br /><blockquote> autocmd FileType cpp silent! !cp $HOME/devel/program/c/ycm/.ycm_extra_conf.py $(pwd) && notify-send "a copy of ycm was moved for C++ code to $(pwd)/"<br /></blockquote><br />Lo cual funciona como esperado, pero... cada vez que editemos/creemos un nuevo cpp en el mismo directorio, esa funcion *siempre* se ejecutará, lo cual copiará el mismo archivo y mostrará el mismo mensaje de forma repetitiva, cosa que se torna un bastante incomodo despues de cierto tiempo. Entonces lo mas conveniente es hacer una funcion que verifique si el archivo ycm ya existe en el directorio actual y si existe pues salimos, si no existe, lo copiamos. <br /><br />La funcion en cuestión quedará de esta manera:<br /><blockquote>function! Ycm_check()<br />    let file_path= getcwd()."/"<br />    if filereadable(file_path.".ycm_extra_conf.py")<br />        return<br />    else<br />        !cp $HOME/devel/program/c/ycm/.ycm_extra_conf.py $(pwd) && notify-send "a copy of ycm was moved for C++ code to $(pwd)/"<br />    endif<br />endfunction<br /><br />autocmd FileType cpp silent! call Ycm_check()<br /></blockquote><br />Un screenshot:<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-fEP47nVvRQk/VA5CZV8W8vI/AAAAAAAAAaM/4bKna2Gi6SQ/s1600/2014-09-08-174953_1366x768_scrot.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-fEP47nVvRQk/VA5CZV8W8vI/AAAAAAAAAaM/4bKna2Gi6SQ/s320/2014-09-08-174953_1366x768_scrot.png" /></a></div>

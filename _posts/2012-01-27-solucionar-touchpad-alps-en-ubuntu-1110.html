@@ -1,0 +1,13 @@
+---
+layout: post
+title: Solucionar Touchpad AlpsPS/2 en Ubuntu 11.10
+date: '2012-01-27T00:11:00.000-06:00'
+author: Rcart
+tags:
+- ubuntu
+modified_time: '2012-01-31T00:31:51.517-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-2125277606866782376
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/01/solucionar-touchpad-alps-en-ubuntu-1110.html
+---
+
+Bueno, en este caso, el touchpad no es reconocido como tal sino que como un mouse PS/2.<br /><br />Este tipo de touchpad no es de los populares Synptics TouchPad. Veamos algunas descripciones:<br /><blockquote>rcart*ubuntu:~$ xinput list | grep Alps <br />?   ? AlpsPS/2 ALPS DualPoint TouchPad         id=13 [slave  pointer  (2)] </blockquote><br />(Ojo, quizas la salida no sea identica pero si muy parecida)  La solucion consta de instalar el paquete en <a href="http://people.canonical.com/~sforshee/alps-touchpad/psmouse-alps-0.10/psmouse-alps-dkms_0.10_all.deb">este reporte</a> <br /><blockquote>rcart*ubuntu:~$ sudo dpkg -i psmouse-alps-dkms_0.10_all.deb </blockquote>Reiniciar y despues deben irse a la configuracion de Mouse y Touchpad, alli encontraran una nueva pestaña que dice "Touchpad". Y listo, con eso pueden habilitar el scrolling horizontal, tap, doble tap, etc. <br /><br />Saludos.

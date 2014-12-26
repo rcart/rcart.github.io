@@ -1,0 +1,13 @@
+---
+layout: post
+title: Drenaje de bateria en equipos Intel i3
+date: '2012-03-02T12:11:00.001-06:00'
+author: Rcart
+tags:
+- ubuntu
+modified_time: '2012-03-02T12:12:46.172-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-5796113678075641085
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/03/drenaje-de-bateria-en-equipos-intel-i3.html
+---
+
+Esto es algo fastidioso. La bateria en <a href="http://www.ubuntu.com/certification/hardware/201104-7891">mi portatil</a> tiene la capacidad de aguantar 4:30~ hrs de independecia. Con Ubuntu 11.10 dura casi 2:30 con un uso bastante pasivo. Es un asco.<br /><br />El problema esta especificamente en el controlador de video en mi tarjeta integrada. Veamos la descripcion:<br /><blockquote>Processor: Intel® Core™ i3-2330M CPU @ 2.20GHz × 4  (<- Nicee!!! ;D) Graphics: Intel® Sandybridge Mobile  </blockquote><br /><br /><br /><br /><br />En las recientes versiones del kernel > 2.6.38, el controlador de video consume una gran cantidad del porcentaje de la bateria. La solucion es pasarle un parametro al kernel (que luego lo captura el driver de video) que hace que el contrador reduzca el consumo de energia, habilitando la caracteristica <b> power-save </b> de estas tarjetas de video. Es muy simple.<br /><br />Editamos el archivo <b>/etc/default/grub </b> y agregamos el parametro <b><i>i915.i915_enable_rc6=1</i></b> para habilitar esta caracteristica, quedando el archivo asi:<br /><blockquote>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pcie_aspm=force <b>i915.i915_enable_rc6=1</b>"<br /></blockquote><br />Actualizamos el grub<br /><blockquote>sudo update-grub<br /></blockquote><br />Y con esto ganaremos casi 2 hrs mas de bateria. Nada mal }:P<br /><br />Mas info: <a href="http://www.phoronix.com/scan.php?page=news_item&px=MTAwNjU">http://www.phoronix.com/scan.php?page=news_item&px=MTAwNjU</a>

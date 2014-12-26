@@ -1,0 +1,14 @@
+---
+layout: post
+title: Suspension Hibrida en Ubuntu
+date: '2012-10-13T01:21:00.002-05:00'
+author: Rcart
+tags:
+- random
+- ubuntu
+modified_time: '2012-10-13T01:21:51.991-05:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-6482293139088603875
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/10/suspension-hibrida.html
+---
+
+Pues bueno, esto lo tenia pendiente de implementar y compartir desde hace varios meses. La suspension hibrida (en el paquete pm-utils) consiste en que el equipo suspende normalmente, pero despues de X tiempo puede hibernar automaticamente y asi evitar consumo de energia (durante la suspension el equipo sigue despierto).<br /><br />Primero que nada se debe confirmar que nuestro equipo soporta este tipo de suspension. Comencemos:<br /><blockquote>$ sudo pm-is-supported --suspend-hybrid && echo $?</blockquote><br />Y si el valor de retorno es 0 (cero), entonces nuestro equipo soporta esta funcionalidad. De no ser asi, esto no esta disponible para tu equipo.<br /><br />Una vez confirmado, vamos a crear la regla que permita reemplezar la suspension normal por la suspension hibrida:<br /><blockquote>$ sudo vim /etc/pm/config.d/00-hybrid-suspend</blockquote><br />Con el siguiente contenido:<br /><blockquote># Always use suspend_hybrid instead of suspend<br />if [ "$METHOD" = "suspend" ]; then<br />METHOD=suspend_hybrid<br />fi<br /></blockquote><br />El script es auto-explicable: si el equipo se suspende, en vez de utilizar la suspension normal se debe utilizar la suspension hibrida.<br /><br />Y con eso despues de un determinado tiempo despues de estar suspendido el equipo, este hibernará automaticamente. Para tener un mejor control del tiempo de suspension antes de que pase a hibernar, podemos indicarlo explicitamente con la variable <b>PM_HIBERNATE_DELAY</b> en segundos. Yo lo dejé para que hiberne despues de una hora (3600s) de estar "dormido", considero que es tiempo suficiente:<br /><blockquote># Always use suspend_hybrid instead of suspend<br />if [ "$METHOD" = "suspend" ]; then<br />METHOD=suspend_hybrid<br />fi<br />PM_HIBERNATE_DELAY=3600</blockquote><br />Para que lo vean en accion pueden poner un tiempo de 5s, y luego de comprobar su funcionalidad lo establacen al valor deseado. No es necesario reiniciar porque estos son <b>eventos</b> que se capturan por acpid.<br /><br />Saludos.<br /><br /><a href="http://daniel.hahler.de/use-hybrid-suspend-method-by-default">Fuente</a>

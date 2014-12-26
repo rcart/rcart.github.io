@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'Error: activated service ''org.freedesktop.systemd1'' failed'
+date: '2014-07-02T22:25:00.001-05:00'
+author: Rcart
+tags:
+- debian
+modified_time: '2014-07-02T22:25:49.751-05:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-1537892776346354640
+blogger_orig_url: http://rcartbitacora.blogspot.com/2014/07/error-activated-service.html
+---
+
+Nos enfrentamos a un error que causa que el sistema no roconozca ciertos ACPI events, lo cual nos deja sin suspension, botones fin funcionar (boton de encendido, ej) y una serie de errores en nuestro syslog.<br /><br />Resulta que este problem es producto de una actualizacion de systemd que rompe la captura y transmision de eventos entre ACPI y D-Bus porquee systemd no inicia con los permisos necesarios para poder "comunicar" estos eventos. Como podemos ver en bugs <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731649">#731649</a> y <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=731649">#729576</a> (el segundo dando una explicacion mucho mas detallada entre desarrolladores como Ian Jackson, fundador de Debian) se entiende quee la solucion es instalar un paquete sacado de ese mismo hilo como "workaround": <b>systemd-shim</b>.<br /><br />Despues de eso los servicios son reiniciados automaticamente y magicamente todo vuelve a la normalidad. Vemos en el source de ese paquete que entre otras cosas hace registrar systemd en D-Bus de forma adecuadad para que dicho error no sea generado y tanto systemd, d-bus y acpi vivan felices.<br /><br />Definitivamente tener <b>Debian Testing</b> algunas veces nos saca de la rutina ^_^

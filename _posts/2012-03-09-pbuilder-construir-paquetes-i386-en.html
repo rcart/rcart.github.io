@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'pbuilder: Construir paquetes i386 en equipos x64'
+date: '2012-03-09T18:28:00.001-06:00'
+author: Rcart
+tags:
+- ubuntu-dev
+modified_time: '2012-03-11T00:49:20.248-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-5350629478036357535
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/03/pbuilder-construir-paquetes-i386-en.html
+---
+
+Lo maravilloso al momento de construir paquetes utilizando pbuilder, seria tener la facilidad de construir para arquitecturas i386 desde equipos x64. Pues es facil utilizando las ultimas versiones de pbuilder (no se desde cuando esto es posible).<br /><br />Primero lo que debemos hacer es tener un sistema base para ambas arquitecturas, para contruirlas hacemos esto:<br /><blockquote>pbuider-dist precise i386 create</blockquote><br />Y despues de que haya finalizado el proceso de instalacion, creamos un sistema base para x64 (como tengo un equipo x64, no es necesario especificar la arquitectura debido a que pbuilder descarga el sistema base con X aquitectura dependiendo de nuestro sistema):<br /><blockquote>pbuilder-dist precise create</blockquote><br />Entonces, al momento de crear un paquete para i386, basta con hacer esto:<br /><blockquote>pbuider-dist precise i386 *.dsc</blockquote><br />Para construir paquetes x64 no es necesario indicarla la arquitectura, ya que toma la que estamos utilizando:<br /><blockquote>pbuilder-dist precise *.dsc</blockquote><br />Un tip bastante bueno.<br /><br /><a href="http://daniel.holba.ch/blog/2012/03/welcoming-monday/">Fuente</a>

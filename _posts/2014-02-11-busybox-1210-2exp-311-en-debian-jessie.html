@@ -1,0 +1,14 @@
+---
+layout: post
+title: Busybox >= 1.21.0-2exp | <= 1.21.0-5exp rompe todos los kernels >= 3.11 en
+  Debian Jessie (testing)
+date: '2014-02-11T15:03:00.000-06:00'
+author: Rcart
+tags:
+- debian
+modified_time: '2014-02-11T15:06:12.805-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-603727463036272633
+blogger_orig_url: http://rcartbitacora.blogspot.com/2014/02/busybox-1210-2exp-311-en-debian-jessie.html
+---
+
+Y principalmente lo que rompe es el arranque, resultando en un <b>kernel panic</b>. Este problema lo tuve por mas de un mes y no tenia tiempo de buscarle solucion hasta hace unos dias.<br /><br />Lo que sucede es que despues de actualizar busybox a las versiones mencionadas empieza a ocurrir el problema y manualmente debes seleccionar un kernel inferior para arrancar el sistema. La solucion es facil: revertir la actualizacion de busybox:<br /><blockquote>$ sudo apt-get install busybox=1:1.21.0-1<br /></blockquote><br />Despues de eso <b>es necesario reinstalar</b> la ultima version del kernel para que actualice el initramfs y todos sean felices.<br /><br />Ese bug esta arreglado en la version experimental de busybox. Aqu el changelog:<br /><blockquote>busybox (1:1.21.0-6exp) experimental; urgency=low<br />...<br />...<br />* fix busybox initramfs hook to actually _run_ (make it executable)<br />and actually strip leading /usr from applet paths.  Stupid.<br />(Closes: #732256)<br /></blockquote>

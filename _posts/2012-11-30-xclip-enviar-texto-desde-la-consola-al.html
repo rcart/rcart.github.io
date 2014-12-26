@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'xclip: Enviar texto desde la consola al portapapeles'
+date: '2012-11-30T01:24:00.003-06:00'
+author: Rcart
+tags:
+- random
+- cli
+- ubuntu
+modified_time: '2012-11-30T01:24:35.353-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-7223007963643220999
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/11/xclip-enviar-texto-desde-la-consola-al.html
+---
+
+Esta pequeña herramienta es una joya. En vez de abrir un archivo con vim y luego pasarlo al registro del portapapeles en el servidor X, lo podemos hacer directamente sin abrir el archivo, genial.<br /><br />Si hacemos:<br /><blockquote>$ cat texto.algo | xclip<br /></blockquote><br />Eso envia el contenido del archivo "texto.algo" al registro primario del clipboard del servidor X. Y con eso facilmente lo podemos pegar en cualquier aplicacion grafica con Shift+Insert. Podemos redireccionar cualquier texto mediante pipes a xclip. Otro sencillo ejemplo:<br /><blockquote>$ echo "texto" | xclip<br /></blockquote><br />Instalamos el paquete de unos insignificantes 20kb:<br /><blockquote>$ sudo apt-get install xclip<br /></blockquote><br />Y listo. Para mas opciones vean su manpage ;)<br /><br />Saludos.

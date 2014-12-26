@@ -1,0 +1,13 @@
+---
+layout: post
+title: Microfono interno Dell Inspiron N4050 en Ubuntu 11.10 (ACTUALIZADO)
+date: '2012-01-26T23:51:00.000-06:00'
+author: Rcart
+tags:
+- ubuntu
+modified_time: '2012-10-10T13:06:29.847-05:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-4266441053081195265
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/01/microfono-interno-dell-inspiron-n4050.html
+---
+
+<u>Actualización:</u> <a href="http://rcartbitacora.blogspot.com/2012/10/microfono-interno-dell-inspiron-n4050.html">Soporte incorporado</a><br /><br />Este es un problema que ni siquiera se nota. Al parecer la hubicacion del microfono en este equipo (<a href="http://www.ubuntu.com/certification/hardware/201104-7891"></a><a href="http://www.ubuntu.com/certification/hardware/201104-7891" target="_blank">certificado como compatible en Ubuntu</a>) es un poco inusual.<br /><br />Como la mayoria de las laptops deberia tener el microfono cerca de la camara integrada. Aunque quizas esta no-tan-comun caracteristica tenga sus beneficios, quienes hagan un buen uso del micro y cam podrian determinar si es estrategico o no esta ubicacion.<br /><br />Al parecer este dispositivo no es reconocido en ubuntu en lo mas minimo. Ni con las versiones 3.x del kernel es posible hacerlo funcionar "out of the box". Veamos la tarjeta de sonido y la version del kernel que utilizo:<br /><blockquote class="tr_bq">rcart*ubuntu:~$ aplay -l<br />**** List of PLAYBACK Hardware Devices ****<br />card 0: PCH [HDA Intel PCH], device 0: STAC92xx Analog [STAC92xx Analog]<br />&nbsp; Subdevices: 1/1<br />&nbsp; Subdevice #0: subdevice #0<br />card 0: PCH [HDA Intel PCH], device 3: HDMI 0 [HDMI 0]<br />&nbsp; Subdevices: 1/1<br />&nbsp; Subdevice #0: subdevice #0 <br />rcart*ubuntu:~$ uname -r 3.0.0-15-generic </blockquote>Para poder hacer reconocer el dispositivo, debemos utilizar unos modulos empaquetados por el equipo <a href="https://launchpad.net/~ubuntu-audio-dev/+archive/ppa">ubuntu-audio-dev</a>. La instalacion es algo sencillo y quizas sin necesidad de explicarlo: <blockquote>rcart*ubuntu:~$ sudo add-apt-repository ppa:ubuntu-audio-dev/ppa <br />rcart*ubuntu:~$ sudo apt-get update <br />rcart*ubuntu:~$ sudo apt-get install linux-alsa-driver-modules-3.0.0-14-generic </blockquote>Despues simplemente basta con reiniciar el equipo para para que el microfono funcione como deberia. <br />Saludos.

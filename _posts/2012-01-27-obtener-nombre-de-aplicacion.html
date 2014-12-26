@@ -1,0 +1,13 @@
+---
+layout: post
+title: Obtener nombre de aplicacion graficamente
+date: '2012-01-27T14:12:00.000-06:00'
+author: Rcart
+tags:
+- ubuntu
+modified_time: '2012-01-31T00:31:37.588-06:00'
+blogger_id: tag:blogger.com,1999:blog-4654114015230862603.post-5040691471201148331
+blogger_orig_url: http://rcartbitacora.blogspot.com/2012/01/obtener-nombre-de-aplicacion.html
+---
+
+Esto es muy utilizado al momento de crear reportes de bugs. Normalmente cuando hacemos uso de cierta aplicacion, ejecutamos su lanzador de manera grafica, pero detras de ese lanzador existe un comando en especifico que permite invocar la aplicacion.  Por ejemplo, si quisieramos saber el comando que se ejecuta al invocar el gestor de archivos PCMan File Manager (mi preferido), podriamos abrir el gestor de archivos, y ejectutar en una consola: <blockquote>rcart*ubuntu:~$ xprop WM_CLASS </blockquote>Despues de eso el cursor de cambiará a una 'X' donde solo bastará con dar click en la ventana del gestor de archivos. El resultado: <blockquote>rcart*ubuntu:~$ xprop WM_CLASS <br />WM_CLASS(STRING) = "pcmanfm", "Pcmanfm" </blockquote>Muy útil ;D <br /><br />Mas info: <a href="href=https://wiki.ubuntu.com/Bugs/FindRightPackage#Any">Aqui</a>
