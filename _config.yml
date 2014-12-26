@@ -3,7 +3,7 @@ title: Rcart's blog
 #email: rcart19@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
     My personal blog
-baseurl: "/blog" # the subpath of your site, e.g. /blog/
+#baseurl: "/blog" # the subpath of your site, e.g. /blog/
 url: "rcart.github.io" # the base hostname & protocol for your site
 github_username:  rcart
 
